@@ -8,13 +8,17 @@ import "strings"
 
 type UUID [16]byte
 
+func NewV4(u *UUID){
+  u, err := V4()
+  if err != nil {
+    panic(err)
+  }
+}
+
 func V4()(u *UUID, err os.Error){
   u = new(UUID)
-  n, err := rand.Read(u[0:16])
+  _, err = rand.Read(u[0:16])
   if err != nil { return }
-  if n != 16 {
-    err = os.NewError("Short read from crypto/rand!")
-  }
   // Set bits 6&7 of byte 8 to 0 and 1 respectively
   // 0x80
   u[8] = (u[8] | 0x80) & 0xBF

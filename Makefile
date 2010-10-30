@@ -1,6 +1,6 @@
 include $(GOROOT)/src/Make.inc
 
-TARG=uuid
+TARG=com.abneptis.oss/uuid
 GOFILES=uuid.go\
 
 include $(GOROOT)/src/Make.pkg
