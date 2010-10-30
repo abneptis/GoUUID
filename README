@@ -1,0 +1,4 @@
+  Simple UUID parser/generator for Go
+
+  Only supports creation of v4 (random) ID's at this time, though it should be 
+able to parse any UUID.
