@@ -87,7 +87,7 @@ func hexValue(c byte)(byte){
 
 func (u *UUID)parse(s string)(err os.Error){
   if u == nil { u = new(UUID)}
-  fmt.Printf("UUID Unmarshal: [%s]\n", s)
+  //fmt.Printf("UUID Unmarshal: [%s]\n", s)
   blks := strings.Split(s, "-", 5)
   hexstr := strings.Join(blks, "")
   var value byte = 0
@@ -100,6 +100,6 @@ func (u *UUID)parse(s string)(err os.Error){
       value = 0
     }
   }
-  fmt.Printf("UUID Unmarshaled: [%s]\n", u.String())
+  //fmt.Printf("UUID Unmarshaled: [%s]\n", u.String())
   return
 }
