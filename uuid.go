@@ -1,3 +1,9 @@
+// Universally Unique IDentifier kit
+//
+// Currently parses standard UID's and can generate
+// new V4 (random) UID's.
+//
+// Uses crypto/rand for seed.
 package uuid
 
 import "crypto/rand"
