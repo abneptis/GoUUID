@@ -12,8 +12,11 @@ import "json"
 import "os"
 import "strings"
 
+// A universally unique identifier.
 type UUID [16]byte
 
+// Constructs a new V4 (random) UUID.  NewV4 can panic
+// if there is an error reading from the random source.
 func NewV4(u *UUID){
   u, err := V4()
   if err != nil {
@@ -21,6 +24,8 @@ func NewV4(u *UUID){
   }
 }
 
+// Constructs a new V4 (random) UUID.  Error is returned
+// iff there is an error reading from the random source.
 func V4()(u *UUID, err os.Error){
   u = new(UUID)
   _, err = rand.Read(u[0:16])
@@ -32,14 +37,18 @@ func V4()(u *UUID, err os.Error){
   return
 }
 
+// Formats a UUID as a standard UUID string.
 func (u UUID)String()(string){
   return fmt.Sprintf("%x-%x-%x-%x-%x",u[0:4],u[4:6], u[6:8], u[8:10], u[10:])
 }
 
+// Marshal a UUID to a UUID string so as to
+// avoid byte-format marshalling.
 func (u *UUID)MarshalJSON()(buff []byte, err os.Error){
   return json.Marshal(u.String())
 }
 
+// Parse an UUID string from JSON.
 func (u *UUID)UnmarshalJSON(buff []byte)(err os.Error){
   ustr := ""
   err = json.Unmarshal(buff, &ustr)
@@ -47,6 +56,7 @@ func (u *UUID)UnmarshalJSON(buff []byte)(err os.Error){
   return
 }
 
+// Parse an UUID string and return a new object.
 func Parse(s string)(u *UUID, err os.Error){
   u = new(UUID)
   u.parse(s)
