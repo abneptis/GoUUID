@@ -17,11 +17,12 @@ type UUID [16]byte
 
 // Constructs a new V4 (random) UUID.  NewV4 can panic
 // if there is an error reading from the random source.
-func NewV4(u *UUID){
+func NewV4()(u *UUID){
   u, err := V4()
   if err != nil {
     panic(err)
   }
+  return
 }
 
 // Constructs a new V4 (random) UUID.  Error is returned
